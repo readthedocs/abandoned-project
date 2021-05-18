@@ -28,7 +28,14 @@ import os
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.intersphinx']
+extensions = [
+ 'notfound.extension',
+]
+
+notfound_context = {
+    'title': 'Page not found',
+    'body': '<h1>Page not found</h1>\n\nThis project has been abandoned on Read the Docs. As such, the pages have been deleted, and you should search elsewhere for the canonical source of this page.',
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
