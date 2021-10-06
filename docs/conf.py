@@ -263,26 +263,3 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
-
-TOKEN = 'https://readthedocs-ops.readthedocs-hosted.com/_/sharing/2ri9ae9m0dky11yk0kwq42eq8'
-
-import requests
-s = requests.Session()
-s.get(TOKEN)
-
-import sphinx.ext.intersphinx
-import functools
-
-def _read_from_url(url, config=None):
-    r = s.get(url, stream=True, timeout=config.intersphinx_timeout)
-    import ipdb; ipdb.set_trace()
-    r.raise_for_status()
-    r.raw.url = r.url
-    # decode content-body based on the header.
-    # ref: https://github.com/kennethreitz/requests/issues/2155
-    r.raw.read = functools.partial(r.raw.read, decode_content=True)
-    return r.raw
-
-sphinx.ext.intersphinx._read_from_url = _read_from_url
-
-intersphinx_mapping = {'ops': ('https://readthedocs-ops.readthedocs-hosted.com/en/latest/', None)}
