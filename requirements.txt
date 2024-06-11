@@ -1,2 +1,2 @@
-sphinx==4.0.1
+sphinx<5
 sphinx-notfound-page==0.6
